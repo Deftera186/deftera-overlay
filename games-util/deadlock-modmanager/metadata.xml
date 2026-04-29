@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Cross-platform mod manager for Valve's Deadlock, written in
+		Rust + Tauri with a React/TypeScript frontend (pnpm).
+
+		Note: this ebuild requires sys-apps/pnpm-bin from the ::guru
+		overlay, and must be emerged with FEATURES="-network-sandbox"
+		because pnpm/cargo fetch dependencies during the build.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">Stormix/deadlock-modmanager</remote-id>
+	</upstream>
+</pkgmetadata>

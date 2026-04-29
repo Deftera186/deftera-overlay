@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Deadlock Mod Manager
+Exec=deadlock-modmanager
+Icon=deadlock-modmanager
+Categories=Game;Utility;
+StartupNotify=true
