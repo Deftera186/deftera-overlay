@@ -1,0 +1,23 @@
+[Unit]
+Description=AWS VPN Client privileged background daemon
+Documentation=https://aws.amazon.com/vpn/client-vpn-download/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/awsvpnclient/Service/ACVC.GTK.Service
+Restart=always
+RestartSec=1s
+User=root
+
+# The daemon reads/writes the FIPS module config and bundled openvpn binary;
+# leave filesystem mostly open but apply small hardening that does not break
+# its IPC socket or the spawned openvpn child.
+NoNewPrivileges=false
+ProtectSystem=false
+ProtectHome=false
+PrivateTmp=false
+
+[Install]
+WantedBy=multi-user.target

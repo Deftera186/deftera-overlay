@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Official AWS Client VPN GUI for Linux. A GTK frontend (.NET 8) plus a
+		privileged background daemon that spawns OpenVPN on demand to connect
+		to AWS Client VPN endpoints. Self-contained: ships its own .NET runtime
+		and a musl-linked OpenSSL/OpenVPN under /opt/awsvpnclient.
+
+		Note: the bundled OpenSSL refuses to start unless its FIPS module
+		integrity file (fipsmodule.cnf) has been provisioned via
+		`openssl fipsinstall`. This ebuild's pkg_postinst runs that step
+		automatically (mirroring upstream's .deb postinst).
+	</longdescription>
+	<upstream>
+		<doc>https://docs.aws.amazon.com/vpn/latest/clientvpn-user/user-getting-started.html</doc>
+	</upstream>
+</pkgmetadata>
