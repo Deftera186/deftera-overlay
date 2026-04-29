@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Google Material Symbols installed as system TTF variable fonts:
+		Outlined, Rounded and Sharp styles, each with FILL, GRAD, opsz
+		and wght axes. Useful for desktop apps that pick up icon fonts
+		from fontconfig (e.g. Electron / Tauri apps that ship CSS
+		referencing "Material Symbols Outlined" etc.).
+
+		Upstream does not cut versioned releases for the variable
+		fonts, so this ebuild pins a specific commit of
+		google/material-design-icons under variablefont/.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">google/material-design-icons</remote-id>
+	</upstream>
+</pkgmetadata>
