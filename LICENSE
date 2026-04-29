@@ -1,0 +1,21 @@
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 2, June 1991
+
+ Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+The full text of the GNU General Public License v2 is available at
+<https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
+
+This overlay's metadata (ebuilds, eclasses, scripts, Manifests) is
+distributed under GPL-2 — matching the Gentoo main tree licensing.
+
+Bundled upstream packages keep their own licenses, as declared in each
+ebuild's LICENSE= variable. Notably:
+
+  net-vpn/awsvpnclient    : AWS-EULA Apache-2.0 BSD GPL-2 MIT (proprietary)
+  games-util/deadlock-modmanager  : GPL-3+
+  games-util/twintaillauncher-bin : GPL-3
+  media-fonts/material-symbols-variable : Apache-2.0

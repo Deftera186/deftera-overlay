@@ -1,0 +1,15 @@
+BDEPEND=dev-lang/rust:= llvm-core/clang llvm-core/llvm llvm-core/lld net-libs/nodejs net-misc/curl sys-apps/pnpm-bin virtual/pkgconfig dev-lang/perl dev-lang/nasm
+DEFINED_PHASES=compile install postinst postrm preinst
+DESCRIPTION=Mod manager for Valve's Deadlock (Tauri + Rust)
+EAPI=8
+HOMEPAGE=https://github.com/Stormix/deadlock-modmanager
+IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+INHERIT=desktop xdg
+KEYWORDS=~amd64
+LICENSE=GPL-3+
+RDEPEND=x11-libs/gtk+:3 net-libs/webkit-gtk:4.1 net-libs/libsoup:3.0 dev-libs/glib:2 x11-libs/cairo x11-libs/pango x11-libs/gdk-pixbuf dev-libs/openssl:= app-arch/bzip2
+RESTRICT=mirror network-sandbox
+SLOT=0
+SRC_URI=https://github.com/Stormix/deadlock-modmanager/archive/refs/tags/v0.7.0.tar.gz -> deadlock-modmanager-0.7.0.tar.gz
+_eclasses_=desktop	26d57169ca094c04be416993844ec8bc	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
+_md5_=0c4946c90a64f60e188d9e51437d4258

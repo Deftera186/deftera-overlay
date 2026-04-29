@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>deftera</name>
+    <description>Personal Gentoo overlay maintained by Deftera.</description>
+    <homepage>https://github.com/Deftera186/deftera-overlay</homepage>
+    <owner type="person">
+      <email>liavmordouch@gmail.com</email>
+      <name>Liav Mordouch</name>
+    </owner>
+    <source type="git">https://github.com/Deftera186/deftera-overlay.git</source>
+  </repo>
+</repositories>

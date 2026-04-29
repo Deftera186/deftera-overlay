@@ -1,0 +1,51 @@
+name: pkgcheck
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  scan:
+    name: pkgcheck scan
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/pkgcore/pkgcheck:latest
+      options: --user root
+    steps:
+      - name: Check out overlay
+        uses: actions/checkout@v4
+        with:
+          path: deftera
+
+      - name: Check out ::gentoo (shallow)
+        uses: actions/checkout@v4
+        with:
+          repository: gentoo-mirror/gentoo
+          path: gentoo
+          fetch-depth: 1
+
+      - name: Configure pkgcore repos
+        run: |
+          mkdir -p /etc/portage/repos.conf
+          cat > /etc/portage/repos.conf/gentoo.conf <<EOF
+          [DEFAULT]
+          main-repo = gentoo
+
+          [gentoo]
+          location = ${GITHUB_WORKSPACE}/gentoo
+          EOF
+          cat > /etc/portage/repos.conf/deftera.conf <<EOF
+          [deftera]
+          location = ${GITHUB_WORKSPACE}/deftera
+          masters = gentoo
+          EOF
+
+      - name: Run pkgcheck
+        run: |
+          pkgcheck scan \
+            --repo "${GITHUB_WORKSPACE}/deftera" \
+            --filter latest \
+            -R FancyReporter

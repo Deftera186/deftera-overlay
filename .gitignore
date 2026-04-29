@@ -1,0 +1,13 @@
+# Editor / OS noise
+*~
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+
+# Pkgcheck cache
+.pkgcheck/
+
+# Local distfiles cache (if anyone runs ebuild ... fetch from the tree)
+distfiles/
