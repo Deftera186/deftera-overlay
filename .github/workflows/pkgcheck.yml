@@ -16,12 +16,12 @@ jobs:
       options: --user root
     steps:
       - name: Check out overlay
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: deftera
 
       - name: Check out ::gentoo (shallow)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: gentoo-mirror/gentoo
           path: gentoo
