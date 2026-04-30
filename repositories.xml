@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<!DOCTYPE repositories SYSTEM "https://www.gentoo.org/dtd/repositories.dtd">
 <repositories version="1.0">
-  <repo priority="50" quality="experimental" status="unofficial">
+  <repo quality="experimental" status="unofficial">
     <name>deftera</name>
-    <description>Personal Gentoo overlay maintained by Deftera.</description>
+    <description lang="en">Personal Gentoo overlay maintained by Deftera.</description>
     <homepage>https://github.com/Deftera186/deftera-overlay</homepage>
     <owner type="person">
       <email>liavmordouch@gmail.com</email>
       <name>Liav Mordouch</name>
     </owner>
     <source type="git">https://github.com/Deftera186/deftera-overlay.git</source>
+    <source type="git">git+ssh://git@github.com/Deftera186/deftera-overlay.git</source>
+    <feed>https://github.com/Deftera186/deftera-overlay/commits/main.atom</feed>
   </repo>
 </repositories>
