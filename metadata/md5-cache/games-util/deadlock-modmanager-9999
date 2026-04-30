@@ -1,4 +1,4 @@
-BDEPEND=dev-lang/rust:= llvm-core/clang llvm-core/llvm llvm-core/lld net-libs/nodejs net-misc/curl sys-apps/pnpm-bin virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=dev-lang/rust:= llvm-core/clang llvm-core/llvm llvm-core/lld net-libs/nodejs net-misc/curl sys-apps/pnpm-bin virtual/pkgconfig dev-lang/perl dev-lang/nasm >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile install postinst postrm preinst unpack
 DESCRIPTION=Mod manager for Valve's Deadlock (live git)
 EAPI=8
@@ -11,4 +11,4 @@ RDEPEND=x11-libs/gtk+:3 net-libs/webkit-gtk:4.1 net-libs/libsoup:3.0 dev-libs/gl
 RESTRICT=mirror network-sandbox
 SLOT=0
 _eclasses_=desktop	26d57169ca094c04be416993844ec8bc	git-r3	7b584b5dc33e3bc66ff5b9271bf41764	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
-_md5_=44f472ae35af43007bf537609b55edba
+_md5_=02c9c349e58610b4e81fa1096191e5d2

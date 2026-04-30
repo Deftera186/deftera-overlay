@@ -113,8 +113,17 @@ src_compile() {
 	# the binary will hit those same missing symbols - the explicit
 	# `cargo rustc` re-link below is what actually produces the
 	# binary.
-	cargo build --release
-	cargo rustc --release --bin deadlock-mod-manager -- \
+	# `--features tauri/custom-protocol` is required: tauri's
+	# generate_context!() macro chooses between the embedded
+	# `frontendDist` bundle and the `devUrl` dev server based on
+	# `cfg!(not(feature = "custom-protocol"))`. The official
+	# `tauri build` CLI passes this feature implicitly; bare
+	# `cargo build` does not, so without it the release binary
+	# bakes in `http://localhost:1420` and the WebView fails with
+	# "Could not connect to localhost: Connection refused".
+	cargo build --release --features tauri/custom-protocol
+	cargo rustc --release --features tauri/custom-protocol \
+		--bin deadlock-mod-manager -- \
 		-C link-arg=-fuse-ld=bfd \
 		-C link-arg=-lbz2 \
 		-C link-arg=-lring_core_0_17_14_ \

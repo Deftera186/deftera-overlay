@@ -12,4 +12,4 @@ RESTRICT=mirror network-sandbox
 SLOT=0
 SRC_URI=https://github.com/deadlock-mod-manager/deadlock-mod-manager/archive/refs/tags/v0.18.0.tar.gz -> deadlock-modmanager-0.18.0.tar.gz
 _eclasses_=desktop	26d57169ca094c04be416993844ec8bc	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
-_md5_=46f9ca269088bdc8fafb33be04ebea46
+_md5_=dd9d8025b7226b3c3be8d41c19bba8dc
