@@ -1,0 +1,14 @@
+#!/bin/sh
+# Wrapper for AWS VPN Client.
+#
+# The privileged ACVC.GTK.Service performs its single-instance check via
+# Process.GetProcessesByName("AWS VPN Client"), which on Linux compares
+# against /proc/<pid>/comm. The kernel populates comm from argv[0]'s
+# basename, so launching via a symlink named "awsvpnclient" produces
+# comm="awsvpnclient" - the service finds 0 matches and the GUI shows
+# the misleading "Multiple active users detected on operating system"
+# error.
+#
+# `exec -a` forces argv[0] to the literal string the service expects,
+# making comm match without renaming the on-disk binary.
+exec -a "AWS VPN Client" "/opt/awsvpnclient/AWS VPN Client" "$@"

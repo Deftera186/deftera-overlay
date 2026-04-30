@@ -70,9 +70,17 @@ src_install() {
 	# so Icon resolves via the working directory at launch time).
 	domenu "${S}/usr/share/applications/awsvpnclient.desktop"
 
-	# Convenience launcher on PATH. dosym -r resolves the relative path
-	# from /usr/bin -> /opt/awsvpnclient/...
-	dosym -r "/opt/awsvpnclient/AWS VPN Client" /usr/bin/awsvpnclient
+	# Convenience launcher on PATH. We install a wrapper rather than a
+	# symlink because the privileged ACVC.GTK.Service identifies the GUI
+	# process via Process.GetProcessesByName("AWS VPN Client"), matched
+	# against /proc/<pid>/comm. The kernel derives comm from argv[0]'s
+	# basename (truncated to TASK_COMM_LEN-1 = 15 chars), so a symlink
+	# named "awsvpnclient" produces comm="awsvpnclient", the service
+	# counts zero matching processes, and the GUI surfaces the
+	# misleading "Multiple active users detected on operating system"
+	# error. The wrapper uses `exec -a` to set argv[0] to the literal
+	# string the service expects.
+	newbin "${FILESDIR}/awsvpnclient.wrapper" awsvpnclient
 
 	# Hicolor icon for the menu/launcher.
 	newicon -s 64 "${S}/opt/awsvpnclient/Resources/acvc-64.png" awsvpnclient.png
