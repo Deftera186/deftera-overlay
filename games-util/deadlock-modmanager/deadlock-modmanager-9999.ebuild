@@ -6,8 +6,9 @@ EAPI=8
 inherit desktop git-r3 xdg
 
 DESCRIPTION="Mod manager for Valve's Deadlock (live git)"
-HOMEPAGE="https://github.com/Stormix/deadlock-modmanager"
-EGIT_REPO_URI="https://github.com/Stormix/deadlock-modmanager.git"
+HOMEPAGE="https://github.com/deadlock-mod-manager/deadlock-mod-manager"
+EGIT_REPO_URI="https://github.com/deadlock-mod-manager/deadlock-mod-manager.git"
+EGIT_CHECKOUT_DIR="${WORKDIR}/${PN}"
 
 S="${WORKDIR}/${PN}/apps/desktop"
 
