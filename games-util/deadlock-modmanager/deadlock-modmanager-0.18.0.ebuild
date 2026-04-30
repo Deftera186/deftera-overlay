@@ -77,6 +77,13 @@ src_compile() {
 
 	pnpm install || die "pnpm install failed"
 
+	# Build the Vite frontend bundle into apps/desktop/dist/.
+	# Tauri's `frontendDist` (../dist relative to src-tauri) embeds
+	# this directory into the final binary at compile time. Without
+	# it, tauri bakes in the dev server URL and the binary tries to
+	# connect to http://localhost:1420 at runtime.
+	pnpm ui:build || die "pnpm ui:build failed"
+
 	cd src-tauri || die
 
 	# Two-stage build:
