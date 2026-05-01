@@ -9,20 +9,10 @@ not (yet) in the main `::gentoo` tree.
 
 * **Quality:** experimental — best-effort, no warranty.
 * **Architectures:** `~amd64` only.
-* **Masters:** `gentoo`. Some packages additionally depend on packages
-  from the [`::guru`](https://wiki.gentoo.org/wiki/Project:GURU) overlay
-  (notably `sys-apps/pnpm-bin`); enable `::guru` if you intend to build
-  `games-util/deadlock-modmanager` from source.
-
-## Packages
-
-| Category / package                         | Description                                          |
-|--------------------------------------------|------------------------------------------------------|
-| `games-util/deadlock-modmanager`           | Mod manager for Valve's Deadlock (Tauri + Rust)      |
-| `games-util/deadlock-modmanager-bin`       | Mod manager for Valve's Deadlock (prebuilt binary)   |
-| `games-util/twintaillauncher-bin`          | Multi-platform launcher for anime games (binary)     |
-| `media-fonts/material-symbols-variable`    | Google Material Symbols variable fonts (TTF)         |
-| `net-vpn/awsvpnclient`                     | Official AWS Client VPN GUI desktop client (.deb)    |
+* **Masters:** `gentoo`. Some packages additionally depend on the
+  [`::guru`](https://wiki.gentoo.org/wiki/Project:GURU) overlay
+  (notably `sys-apps/pnpm-bin`); enable `::guru` if you intend to
+  build any source-based ebuild here.
 
 ## Installation
 
