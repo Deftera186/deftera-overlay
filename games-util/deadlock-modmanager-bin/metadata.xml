@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Cross-platform mod manager for Valve's Deadlock, written in
+		Rust + Tauri with a React/TypeScript frontend.
+
+		This package installs the prebuilt amd64 binary published by
+		upstream (the .deb release artifact), avoiding the lengthy
+		Rust + pnpm build required by games-util/deadlock-modmanager.
+		It conflicts with the source ebuild; pick one or the other.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">deadlock-mod-manager/deadlock-mod-manager</remote-id>
+	</upstream>
+</pkgmetadata>

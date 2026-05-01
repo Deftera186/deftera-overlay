@@ -19,6 +19,7 @@ not (yet) in the main `::gentoo` tree.
 | Category / package                         | Description                                          |
 |--------------------------------------------|------------------------------------------------------|
 | `games-util/deadlock-modmanager`           | Mod manager for Valve's Deadlock (Tauri + Rust)      |
+| `games-util/deadlock-modmanager-bin`       | Mod manager for Valve's Deadlock (prebuilt binary)   |
 | `games-util/twintaillauncher-bin`          | Multi-platform launcher for anime games (binary)     |
 | `media-fonts/material-symbols-variable`    | Google Material Symbols variable fonts (TTF)         |
 | `net-vpn/awsvpnclient`                     | Official AWS Client VPN GUI desktop client (.deb)    |
