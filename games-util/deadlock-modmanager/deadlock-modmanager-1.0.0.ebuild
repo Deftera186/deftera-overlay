@@ -3,19 +3,26 @@
 
 EAPI=8
 
-inherit desktop git-r3 xdg
+inherit desktop xdg
 
-DESCRIPTION="Mod manager for Valve's Deadlock (live git)"
+DESCRIPTION="Mod manager for Valve's Deadlock (Tauri + Rust)"
 HOMEPAGE="https://github.com/deadlock-mod-manager/deadlock-mod-manager"
-EGIT_REPO_URI="https://github.com/deadlock-mod-manager/deadlock-mod-manager.git"
-EGIT_CHECKOUT_DIR="${WORKDIR}/${PN}"
+SRC_URI="
+	https://github.com/deadlock-mod-manager/deadlock-mod-manager/archive/refs/tags/v${PV}.tar.gz
+		-> ${P}.tar.gz
+"
 
-S="${WORKDIR}/${PN}/apps/desktop"
+# Upstream renamed the project (and the GitHub org) from
+# Stormix/deadlock-modmanager to
+# deadlock-mod-manager/deadlock-mod-manager, so the tarball top-level
+# directory is now ${PN/modmanager/mod-manager}-${PV}. We keep the
+# overlay PN as deadlock-modmanager for continuity with already-installed
+# users.
+S="${WORKDIR}/deadlock-mod-manager-${PV}/apps/desktop"
 
 LICENSE="GPL-3+"
 SLOT="0"
-# Live ebuild: no KEYWORDS
-PROPERTIES="live"
+KEYWORDS="~amd64"
 
 # pnpm + cargo both want network access during build (npm registry,
 # crates.io). Network sandbox must be disabled when emerging this:
@@ -50,10 +57,6 @@ BDEPEND="
 	dev-lang/perl
 	dev-lang/nasm
 "
-
-src_unpack() {
-	git-r3_src_unpack
-}
 
 src_compile() {
 	export VITE_API_URL="https://api.deadlockmods.app"
@@ -109,6 +112,10 @@ src_compile() {
 	#    though the matching `-L` search paths are propagated. We
 	#    therefore force the missing static libs in by hand.
 	#
+	# `cargo build` is allowed to fail because its own final link of
+	# the binary will hit those same missing symbols - the explicit
+	# `cargo rustc` re-link below is what actually produces the
+	# binary.
 	# `--features tauri/custom-protocol` is required: tauri's
 	# generate_context!() macro chooses between the embedded
 	# `frontendDist` bundle and the `devUrl` dev server based on
@@ -117,11 +124,6 @@ src_compile() {
 	# `cargo build` does not, so without it the release binary
 	# bakes in `http://localhost:1420` and the WebView fails with
 	# "Could not connect to localhost: Connection refused".
-	#
-	# `cargo build` is allowed to fail because its own final link of
-	# the binary will hit those same missing symbols - the explicit
-	# `cargo rustc` re-link below is what actually produces the
-	# binary.
 	cargo build --release --features tauri/custom-protocol
 	cargo rustc --release --features tauri/custom-protocol \
 		--bin deadlock-mod-manager -- \
