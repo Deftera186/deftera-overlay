@@ -1,9 +1,16 @@
 # deftera overlay
 
+[![pkgcheck](https://github.com/Deftera186/deftera-overlay/actions/workflows/pkgcheck.yml/badge.svg)](https://github.com/Deftera186/deftera-overlay/actions/workflows/pkgcheck.yml)
+[![Gentoo overlays](https://img.shields.io/badge/gentoo-overlays-54487A?logo=gentoo)](https://api.gentoo.org/overlays/repositories.xml)
+
 Personal [Gentoo](https://www.gentoo.org/) overlay maintained by
 [@Deftera186](https://github.com/Deftera186), packaging a small set of
 desktop applications, game utilities and proprietary clients that are
 not (yet) in the main `::gentoo` tree.
+
+Listed in the [official Gentoo overlays
+database](https://api.gentoo.org/overlays/repositories.xml) as
+`deftera`.
 
 ## Status
 
@@ -18,19 +25,28 @@ not (yet) in the main `::gentoo` tree.
 
 ### Using `eselect-repository` (recommended)
 
+The overlay is listed in the [official Gentoo overlays
+database](https://api.gentoo.org/overlays/repositories.xml), so it
+can be added by name:
+
 ```sh
 sudo emerge --ask app-eselect/eselect-repository
-sudo eselect repository add deftera git https://github.com/Deftera186/deftera-overlay.git
+sudo eselect repository enable deftera
 sudo emaint sync --repo deftera
 ```
 
-### Using `layman`
+### Using `layman` (legacy)
+
+`layman` is deprecated upstream in favour of `eselect-repository`, but
+still works:
 
 ```sh
-sudo layman -o https://raw.githubusercontent.com/Deftera186/deftera-overlay/main/repositories.xml -f -a deftera
+sudo layman -a deftera
 ```
 
 ### Manual
+
+Only needed if you cannot use `eselect-repository` or `layman`:
 
 ```sh
 sudo mkdir -p /var/db/repos/deftera
