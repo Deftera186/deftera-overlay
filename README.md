@@ -69,6 +69,13 @@ it to install:
 echo 'net-vpn/awsvpnclient AWS-EULA' | sudo tee /etc/portage/package.license/awsvpnclient
 ```
 
+`dev-db/valentina-studio-bin` ships under the Paradigma Software Valentina
+Studio EULA. To allow it to install:
+
+```sh
+echo 'dev-db/valentina-studio-bin Valentina-EULA' | sudo tee /etc/portage/package.license/valentina-studio-bin
+```
+
 ## Quality assurance
 
 Every change is scanned with [`pkgcheck`](https://github.com/pkgcore/pkgcheck)

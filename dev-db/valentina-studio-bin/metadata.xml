@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Valentina Studio is a cross-platform GUI database client by Paradigma
+		Software for DuckDB, ValentinaDB, MongoDB, MySQL, MariaDB, PostgreSQL,
+		MS SQL Server and SQLite. It bundles a SQL editor with autocompletion,
+		schema and query designers, diagramming, data transfer and import/
+		export tools.
+
+		This package installs the prebuilt amd64 binary published by upstream
+		as a .deb release artifact under /opt/VStudio. Qt6, ICU and the
+		Valentina runtime libraries are bundled inside that prefix; only a
+		small set of system X11/GTK/glibc libraries is pulled in via RDEPEND.
+
+		The Free Edition requires registration with a no-cost serial number
+		obtained from Paradigma Software on first launch.
+	</longdescription>
+	<upstream>
+		<doc>https://valentina-db.com/dokuwiki/doku.php?id=valentina:studio:start</doc>
+		<changelog>https://valentina-db.com/dokuwiki/doku.php?id=valentina:releases:releases</changelog>
+	</upstream>
+</pkgmetadata>
