@@ -99,17 +99,27 @@ src_install() {
 	mkdir -p "${ED}/opt" || die
 	cp -a "${S}/opt/VStudio" "${ED}/opt/" || die "Failed to install /opt/VStudio tree"
 
-	# Convenience symlink on PATH. Qt resolves the symlink before locating
-	# qt.conf, so the bundled Plugins path keeps working.
+	# Convenience symlinks on PATH. We ship two basenames so that
+	# .desktop-aware launchers (which read Name=) and dmenu/wmenu-run
+	# style PATH launchers (which only see basenames) both surface the
+	# package under a name the user would actually type. Qt resolves the
+	# symlink before locating qt.conf, so the bundled Plugins path keeps
+	# working regardless of which symlink is invoked.
 	dosym ../../opt/VStudio/vstudio /usr/bin/vstudio
+	dosym ../../opt/VStudio/vstudio /usr/bin/valentina-studio
 
-	# Desktop file. Upstream's Icon= uses an absolute path under /opt;
-	# replace it with a logical name so the launcher honours icon themes,
-	# then install the upstream 128x128 PNG into hicolor.
+	# Desktop file. Upstream's Icon= uses an absolute path under /opt and
+	# its Name/GenericName are both the cryptic "VStudio", so launcher
+	# search by "valentina" or "studio" finds nothing. Rewrite to a
+	# logical icon name (so themes apply) and to the product's real name
+	# (so launchers surface it), then install the upstream 128x128 PNG
+	# into hicolor.
 	local desktop="${S}/usr/share/applications/vstudio.desktop"
 	[[ -f "${desktop}" ]] || die "expected desktop file missing: ${desktop}"
 	sed -i \
 		-e 's|^Icon=/opt/VStudio/Resources/vstudio\.png$|Icon=vstudio|' \
+		-e 's|^Name=VStudio$|Name=Valentina Studio|' \
+		-e 's|^GenericName\(\[[^]]*\]\)\?=VStudio$|GenericName\1=Database Manager|' \
 		"${desktop}" \
 		|| die "sed on desktop file failed"
 	domenu "${desktop}"
