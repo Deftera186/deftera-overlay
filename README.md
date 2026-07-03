@@ -76,6 +76,13 @@ Studio EULA. To allow it to install:
 echo 'dev-db/valentina-studio-bin Valentina-EULA' | sudo tee /etc/portage/package.license/valentina-studio-bin
 ```
 
+`sci-ml/lmstudio-bin` ships under the LM Studio Desktop App Terms of
+Use. To allow it to install:
+
+```sh
+echo 'sci-ml/lmstudio-bin LM-Studio' | sudo tee /etc/portage/package.license/lmstudio-bin
+```
+
 ## Quality assurance
 
 Every change is scanned with [`pkgcheck`](https://github.com/pkgcore/pkgcheck)

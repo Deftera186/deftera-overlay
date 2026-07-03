@@ -1,0 +1,20 @@
+LM Studio Desktop App Terms of Use
+
+The LM Studio desktop application is licensed by Element Labs, Inc.
+under the LM Studio Desktop App Terms of Use
+(https://lmstudio.ai/app-terms).
+
+This is a proprietary, closed-source binary distribution. Element Labs
+grants a non-exclusive, non-transferable license to use the Software
+solely for personal and/or internal business purposes. Redistribution,
+sublicensing, sale, rental, transfer, modification, and reverse
+engineering are prohibited; users must obtain the package from Element
+Labs directly (https://lmstudio.ai/download).
+
+The application bundles Electron and Chromium; those components retain
+their own upstream licenses (see LICENSE.electron.txt and
+LICENSES.chromium.html inside the installed application tree).
+
+By installing or using this software you agree to the LM Studio Desktop
+App Terms of Use and the LM Studio Privacy Policy
+(https://lmstudio.ai/app-privacy).

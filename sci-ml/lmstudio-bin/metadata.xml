@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		LM Studio is a proprietary desktop application by Element Labs for
+		discovering, downloading and running large language models locally.
+		It provides a chat UI and an OpenAI-compatible local server, with
+		GPU acceleration via bundled Vulkan and ROCm/llama.cpp backends.
+
+		This package installs the prebuilt amd64 binary published by
+		upstream as a .deb release artifact under /opt/LM-Studio. The
+		Electron 38 / Chromium 140 runtime and its supporting libraries are
+		bundled inside that prefix; only a small set of system X11/GTK/glibc
+		libraries is pulled in via RDEPEND.
+
+		Models and settings are stored under ~/.lmstudio. A modern x86-64
+		CPU with AVX2 is required.
+	</longdescription>
+	<upstream>
+		<doc>https://lmstudio.ai/docs</doc>
+		<changelog>https://lmstudio.ai/blog</changelog>
+	</upstream>
+</pkgmetadata>
