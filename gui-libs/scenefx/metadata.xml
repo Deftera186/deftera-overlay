@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		SceneFX is a project that takes the wlroots scene API and replaces the
+		wlroots renderer with its own fx renderer, capable of rendering
+		surfaces with eye-candy effects including blur, shadows, and rounded
+		corners, while maintaining the benefits of simplicity gained from
+		using the scene API.
+	</longdescription>
+	<use>
+		<flag name="examples">Build example applications</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">wlrfx/scenefx</remote-id>
+		<bugs-to>https://github.com/wlrfx/scenefx/issues</bugs-to>
+		<changelog>https://github.com/wlrfx/scenefx/releases</changelog>
+	</upstream>
+</pkgmetadata>
