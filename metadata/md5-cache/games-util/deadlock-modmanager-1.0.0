@@ -11,5 +11,5 @@ RDEPEND=x11-libs/gtk+:3 net-libs/webkit-gtk:4.1 net-libs/libsoup:3.0 dev-libs/gl
 RESTRICT=mirror network-sandbox
 SLOT=0
 SRC_URI=https://github.com/deadlock-mod-manager/deadlock-mod-manager/archive/refs/tags/v1.0.0.tar.gz -> deadlock-modmanager-1.0.0.tar.gz
-_eclasses_=desktop	26d57169ca094c04be416993844ec8bc	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
+_eclasses_=desktop	e447b5f77146d69797e9f03ff177f3f1	xdg	3ef49a87c52c8b77c476351195dfe575	xdg-utils	42869b3c8d86a70ef3cf75165a395e09
 _md5_=37e90fdf20b57b6abb98f0f17f73c30f
