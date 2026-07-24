@@ -36,3 +36,53 @@ index 7fd4c69..baeb8c1 100644
  
      let unsupported_provider = probe(|turn| {
          set_web_search_mode(turn, WebSearchMode::Live);
+diff --git a/models-manager/models.json b/models-manager/models.json
+index 7ac42cb..7743246 100644
+--- a/models-manager/models.json
++++ b/models-manager/models.json
+@@ -19,7 +19,7 @@
+       "supports_parallel_tool_calls": true,
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v2",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "auto_review_model_override": null,
+       "context_window": 272000,
+@@ -133,7 +133,7 @@
+       "supports_parallel_tool_calls": true,
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v2",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "auto_review_model_override": null,
+       "context_window": 272000,
+@@ -245,7 +245,7 @@
+       "supports_parallel_tool_calls": true,
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v1",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "auto_review_model_override": null,
+       "context_window": 272000,
+diff --git a/models-manager/src/manager_tests.rs b/models-manager/src/manager_tests.rs
+index a84644f..503c531 100644
+--- a/models-manager/src/manager_tests.rs
++++ b/models-manager/src/manager_tests.rs
+@@ -28,2 +28,14 @@
++#[test]
++fn bundled_gpt_5_6_models_use_full_responses_api() {
++    let models = load_remote_models_from_file().expect("bundled models should load");
++    for slug in ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"] {
++        let model = models
++            .iter()
++            .find(|model| model.slug == slug)
++            .unwrap_or_else(|| panic!("missing bundled model {slug}"));
++        assert!(!model.use_responses_lite, "{slug} must expose hosted tools");
++    }
++}
++
+ const DEFAULT_HTTP_CLIENT_FACTORY: HttpClientFactory =
+     HttpClientFactory::new(OutboundProxyPolicy::ReqwestDefault);
