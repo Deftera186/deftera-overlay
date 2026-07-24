@@ -114,6 +114,7 @@ gen_git_crate_dir() {
 
 src_prepare() {
 	default
+	use copilot-web-search && eapply "${FILESDIR}/${P}-copilot-web-search.patch"
 
 	# Fix tokio-tungstenite's git dependency on tungstenite
 	sed -i '/^\[dependencies\.tungstenite\]/,/^$/{
