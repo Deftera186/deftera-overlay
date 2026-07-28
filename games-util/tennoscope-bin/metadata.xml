@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Local-first Warframe companion for Linux, written in Rust +
+		Tauri with a React/TypeScript frontend. It reads a running
+		Warframe process read-only to obtain a session token, asks
+		Warframe's own inventory endpoint for the player's collection,
+		and stores a normalized snapshot locally. When a relic cracks
+		it recognizes the reward cards on screen and prices them from
+		warframe.market in an override-redirect X11 overlay.
+
+		This package installs the prebuilt amd64 binary published
+		upstream (the .deb release artifact), avoiding the lengthy
+		Rust + pnpm build required by games-util/tennoscope. It
+		conflicts with the source ebuild; pick one or the other.
+
+		The relic overlay shells out to xwininfo, ImageMagick and
+		tesseract at runtime. The collection browser works without
+		them, but they are pulled in by default so the advertised
+		feature works out of the box.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">Deftera186/tennoscope</remote-id>
+		<bugs-to>https://github.com/Deftera186/tennoscope/issues</bugs-to>
+	</upstream>
+</pkgmetadata>

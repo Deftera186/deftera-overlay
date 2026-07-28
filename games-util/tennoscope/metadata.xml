@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		Local-first Warframe companion for Linux, written in Rust +
+		Tauri with a React/TypeScript frontend. It reads a running
+		Warframe process read-only to obtain a session token, asks
+		Warframe's own inventory endpoint for the player's collection,
+		and stores a normalized snapshot locally. When a relic cracks
+		it recognizes the reward cards on screen and prices them from
+		warframe.market in an override-redirect X11 overlay.
+
+		This package builds from source. It requires network access
+		during the build to resolve the Cargo and pnpm lockfiles, so
+		it must be emerged with FEATURES="-network-sandbox", and it
+		needs sys-apps/pnpm-bin from the ::guru overlay. Most users
+		want games-util/tennoscope-bin instead, which installs the
+		prebuilt binary published upstream. The two conflict; pick one.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">Deftera186/tennoscope</remote-id>
+		<bugs-to>https://github.com/Deftera186/tennoscope/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
