@@ -19,10 +19,9 @@
 		Rust + pnpm build required by games-util/tennoscope. It
 		conflicts with the source ebuild; pick one or the other.
 
-		The relic overlay shells out to xwininfo, ImageMagick and
-		tesseract at runtime. The collection browser works without
-		them, but they are pulled in by default so the advertised
-		feature works out of the box.
+		The relic overlay shells out to tesseract at runtime. The
+		collection browser works without it, but it is pulled in by
+		default so the advertised feature works out of the box.
 	</longdescription>
 	<upstream>
 		<remote-id type="github">Deftera186/tennoscope</remote-id>
