@@ -34,6 +34,17 @@ RDEPEND="
 	!games-util/tennoscope-bin
 "
 
+# xcap's screen capture, which the reward reader runs on. Its Linux path links gbm, wayland-client
+# and xcb, all three of which show up in `readelf -d` on the finished binary -- they were satisfied
+# only because webkit-gtk and gtk+ happen to pull the same libraries in. dbus is the same story via
+# glib. Named here so a change to another package's dependencies cannot quietly break this one.
+RDEPEND+="
+	dev-libs/wayland
+	media-libs/mesa
+	sys-apps/dbus
+	x11-libs/libxcb
+"
+
 # The relic overlay shells out to tesseract at runtime; the collection browser runs without
 # it. tesseract installs eng data unconditionally, so no L10N constraint is needed. Window
 # location and the crop pipeline are in-process since 0.5.0, so xwininfo and ImageMagick are
@@ -51,12 +62,26 @@ DEPEND="${RDEPEND}"
 
 # sys-apps/pnpm-bin lives in the ::guru overlay. Enable ::guru (or provide pnpm by other means)
 # before emerging this.
+#
+# media-video/pipewire and llvm-core/clang are xcap's, not ours, and both are build-time only.
+# `libspa-sys` and `pipewire-sys` probe `libpipewire-0.3.pc` through `system_deps` and then
+# generate their bindings with bindgen, which needs libclang: without pipewire, src_compile dies in
+# libspa-sys' build script with "Cannot find libraries: ... Package 'libpipewire-0.3' not found".
+# Nothing in RDEPEND pulls either in. It builds anyway on most desktop systems because something
+# else there already installed pipewire (here: qtmultimedia, steam-launcher, waybar, gamescope),
+# which is exactly why this was missing for six releases without anyone noticing.
+#
+# Build-time only, and not in RDEPEND: --as-needed drops libpipewire from the link, so the finished
+# binary has no pipewire DT_NEEDED entry and no undefined pw_/spa_ symbols. clang:* because any
+# slot's libclang will do -- bindgen only parses headers with it.
 BDEPEND="
 	|| (
 		>=dev-lang/rust-1.85.0
 		>=dev-lang/rust-bin-1.85.0
 	)
 	>=net-libs/nodejs-20.19
+	llvm-core/clang:*
+	media-video/pipewire
 	sys-apps/pnpm-bin
 	virtual/pkgconfig
 "

@@ -38,6 +38,17 @@ RDEPEND="
 	!games-util/tennoscope
 "
 
+# Also from `readelf -d` on the binary inside the released .deb: xcap's capture path links gbm,
+# wayland-client and xcb, and glib reaches dbus. All four were satisfied only because webkit-gtk
+# and gtk+ pull the same libraries in, so nothing broke -- but this package should not depend on
+# another package's dependency list staying the way it is.
+RDEPEND+="
+	dev-libs/wayland
+	media-libs/mesa
+	sys-apps/dbus
+	x11-libs/libxcb
+"
+
 # The relic overlay shells out to tesseract at runtime; the collection browser runs without
 # it. tesseract installs eng data unconditionally, so no L10N constraint is needed. Window
 # location and the crop pipeline are in-process since 0.5.0, so xwininfo and ImageMagick are
