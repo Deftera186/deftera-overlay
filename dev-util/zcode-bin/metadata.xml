@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liavmordouch@gmail.com</email>
+		<name>Liav Mordouch</name>
+	</maintainer>
+	<longdescription lang="en">
+		ZCode is a proprietary "Agentic Development Environment" desktop
+		app from Z.ai: an Electron-based harness for GLM coding models
+		that plans, codes, reviews, and deploys alongside your existing
+		tools. It bundles its own ripgrep, bfs, and ugrep binaries for
+		agent-side search.
+
+		This package installs the prebuilt amd64 binary published by
+		upstream as a .deb release artifact under /opt/ZCode. The
+		Electron runtime and its supporting libraries are bundled inside
+		that prefix; only a small set of system X11/GTK/glibc libraries
+		is pulled in via RDEPEND.
+
+		Configuration, plugins, and workspaces are stored under ~/.zcode.
+		A Z.ai account sign-in is required to use the bundled GLM models.
+	</longdescription>
+	<upstream>
+		<doc>https://zcode.z.ai/en/docs</doc>
+		<changelog>https://zcode.z.ai/en/changelog</changelog>
+	</upstream>
+</pkgmetadata>
