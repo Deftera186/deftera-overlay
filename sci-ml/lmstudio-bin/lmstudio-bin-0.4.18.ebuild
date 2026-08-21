@@ -38,7 +38,9 @@ RESTRICT="bindist mirror strip test"
 # ELFs actually link against, derived from DT_NEEDED on the `lm-studio`
 # binary plus the extra libraries upstream's own .deb `Depends:` field and
 # the Electron runtime dlopen() at launch (libnotify, libsecret, libXtst,
-# libXScrnSaver, libuuid). libudev is consumed via the systemd/eudev split.
+# libXScrnSaver, libuuid). libudev is consumed via virtual/libudev: a
+# systemd/systemd-utils alternative could be satisfied by a udev-less
+# build, which ships no libudev.so.1.
 # virtual/libcrypt is pulled by the vendored CPython 3.11 that backs the
 # llama.cpp extension (_crypt.cpython-311.so links libcrypt.so).
 #
@@ -47,10 +49,7 @@ RESTRICT="bindist mirror strip test"
 # x11-drivers/nvidia-drivers (driver-provided; never a package dep). The
 # bundled Vulkan and CPU (AVX2) backends need no such library.
 RDEPEND="
-	|| (
-		sys-apps/systemd
-		sys-apps/systemd-utils
-	)
+	virtual/libudev
 	app-accessibility/at-spi2-core
 	app-crypt/libsecret
 	dev-libs/expat
