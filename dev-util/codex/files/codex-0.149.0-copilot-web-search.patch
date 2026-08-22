@@ -1,0 +1,85 @@
+--- a/core/src/tools/spec_plan.rs
++++ b/core/src/tools/spec_plan.rs
+@@ -937,15 +937,8 @@
+     add_collaboration_tools(context, registry);
+ }
+ 
+-fn standalone_web_search_enabled(turn_context: &TurnContext) -> bool {
+-    namespace_tools_enabled(turn_context)
+-        && turn_context.provider.capabilities().web_search
+-        && (turn_context.model_info.use_responses_lite
+-            || turn_context
+-                .config
+-                .features
+-                .get()
+-                .enabled(Feature::StandaloneWebSearch))
++fn standalone_web_search_enabled(_turn_context: &TurnContext) -> bool {
++    false
+ }
+ 
+ fn tool_environment_mode(environments: &TurnEnvironmentSnapshot) -> ToolEnvironmentMode {
+--- a/core/src/tools/spec_plan_tests.rs
++++ b/core/src/tools/spec_plan_tests.rs
+@@ -2871,7 +2871,11 @@
+         },
+     )
+     .await;
+-    standalone_web_search.assert_visible_lacks(&["web_search"]);
++    standalone_web_search.assert_visible_contains(&["web_search"]);
++    assert_eq!(
++        standalone_web_search.namespace_function_names("web"),
++        &[] as &[String],
++    );
+ 
+     let bedrock_cached_web_search = probe(|turn| {
+         use_bedrock_provider(turn);
+--- a/models-manager/models.json
++++ b/models-manager/models.json
+@@ -18,7 +18,7 @@
+       },
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v2",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "include_plugin_usage_instructions": true,
+       "include_apps_usage_instructions": true,
+@@ -132,7 +132,7 @@
+       },
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v2",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "include_plugin_usage_instructions": true,
+       "include_apps_usage_instructions": true,
+@@ -244,7 +244,7 @@
+       },
+       "tool_mode": "code_mode_only",
+       "multi_agent_version": "v1",
+-      "use_responses_lite": true,
++      "use_responses_lite": false,
+       "include_skills_usage_instructions": false,
+       "include_plugin_usage_instructions": true,
+       "include_apps_usage_instructions": true,
+--- a/models-manager/src/manager_tests.rs
++++ b/models-manager/src/manager_tests.rs
+@@ -30,6 +30,18 @@
+ #[path = "model_info_overrides_tests.rs"]
+ mod model_info_overrides_tests;
+ 
++#[test]
++fn bundled_gpt_5_6_models_use_full_responses_api() {
++    let models = load_remote_models_from_file().expect("bundled models should load");
++    for slug in ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"] {
++        let model = models
++            .iter()
++            .find(|model| model.slug == slug)
++            .unwrap_or_else(|| panic!("missing bundled model {slug}"));
++        assert!(!model.use_responses_lite, "{slug} must expose hosted tools");
++    }
++}
++
+ const DEFAULT_HTTP_CLIENT_FACTORY: HttpClientFactory =
+     HttpClientFactory::new(OutboundProxyPolicy::ReqwestDefault);
+ 
