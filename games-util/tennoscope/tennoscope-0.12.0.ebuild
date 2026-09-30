@@ -50,12 +50,14 @@ RDEPEND+="
 "
 
 # The relic overlay shells out to tesseract at runtime; the collection browser runs without
-# it. tesseract installs eng data unconditionally, so no L10N constraint is needed. Window
-# location and the crop pipeline are in-process since 0.5.0, so xwininfo and ImageMagick are
-# no longer runtime tools.
+# it. tesseract installs eng data unconditionally, so no L10N constraint is needed.
 RDEPEND+="
 	app-text/tesseract
 "
+# Wine's virtual desktop hides the game from the ordinary window search, so the X11 path runs
+# `xwininfo -root -tree` to find it, and only that mode needs it. Portage cannot recommend a
+# package: `!!` is a block and RDEPEND is not optional, so the atom is named in pkg_postinst.
+# ImageMagick is not spawned at all; only the OCR pipeline's comments mention it.
 # The Diagnostics report block opens the issue form in a browser and reveals the saved report
 # folder in a file manager; `tauri-plugin-opener` shells out to xdg-open for both.
 RDEPEND+="
@@ -138,4 +140,7 @@ pkg_postinst() {
 	elog ""
 	elog "If acquisition fails with a permission error, see the README section on"
 	elog "kernel.yama.ptrace_scope. Do not run TennoScope as root."
+	elog ""
+	elog "Wine's virtual desktop hides the game from the ordinary window search, so"
+	elog "the X11 path runs xwininfo; install x11-apps/xwininfo if you play that way."
 }
